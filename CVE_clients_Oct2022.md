@@ -30,7 +30,7 @@ Source: https://github.com/xdrr/cve.js
 ## Comparison
 | Project | Language | License | User management | Reservation | Editing | Submission |
 | --- | --- | --- | --- | --- | --- | --- |
-| Vulnogram | JavaScript, Node.js | MIT | No | No | Yes | Yes |
+| Vulnogram | JavaScript, Node.js | MIT | Yes | Yes | Yes | Yes |
 | cveClient | JavaScript | MIT+CMU | Yes | Yes | Yes | Yes |
 | cvelib | Python | MIT | Yes | Yes | No | Yes |
 | CVE.js | JavaScript (ECMAScript 6?) | MIT | Yes | Yes | No | Yes |
