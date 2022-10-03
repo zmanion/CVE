@@ -2,7 +2,7 @@
 The following projects provide clients that are compatible with the new ([October 2022](https://cveproject.github.io/automation-transition)) [CVE Services](https://github.com/CVEProject/cve-services) 2.1 and [JSON 5.0](https://cveproject.github.io/cve-schema/schema/v5.0/docs/) format. Some of the projects provide additional capabilities and features.
 
 ## Vulnogram
-Browser-hostable JavaScript application (also a more feature-rich Node.js server configuration, not reviewed), supports editing, submission, does not support user management or reservation. Vulnogram supports additional features such as generating a generic advisory.
+Browser-hostable JavaScript application (also a more feature-rich Node.js server configuration, not reviewed), supports user management, reservation, editing, submission. Vulnogram supports additional features such as generating a generic advisory.
 
 Live: https://vulnogram.github.io/, use the [CVE 5.0 (beta)](https://vulnogram.github.io/cve5/) tab, uses 0.1.0-dev branch
 
