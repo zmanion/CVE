@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
 #
+# A script to demonstrate cvelib, much hackery to support
+# flow during a live presentation and to both display and execute
+# shell commands correctly.
+#
+
+#
 # Configuration
 #
 CVE_ENVIRONMENT=test
@@ -66,9 +72,17 @@ reset='tput sgr0'
 bold='tput bold'
 
 #
-# Displaying and executing complex commands correctly is hard
+# Both displaying and executing complex commands correctly is hard
 #
-_eval=
+eval_on()
+{
+	_eval=eval
+}
+
+eval_off()
+{
+	_eval=
+}
 
 pause()
 {
@@ -154,7 +168,7 @@ if [ -z "$s_CVE_API_KEY" ]; then
 	echo
 	exit 95
 fi
-sleep 1
+pause
 
 #
 # Versions of some things
@@ -164,6 +178,7 @@ echo "#"
 echo "# 1. Versions of some things"
 echo "#"
 echo
+pause
 show bash --version
 show python -V
 # actual check for Python 3
@@ -184,6 +199,7 @@ echo "#"
 echo "# 2. Install cvelib, configure environment"
 echo "#"
 echo
+pause
 show git clone https://github.com/RedHatProductSecurity/cvelib.git
 show cd cvelib
 show pwd
@@ -211,6 +227,7 @@ echo "#"
 echo "# 3. User management"
 echo "#"
 echo
+pause
 show cve org
 show cve org users
 pause_clear cve user create --help
@@ -237,6 +254,7 @@ echo "#"
 echo "# 4. Reservation"
 echo "#"
 echo
+pause
 show cve list --help
 pause_clear cve list
 pause_clear cve list --state rejected
@@ -264,7 +282,7 @@ echo "#"
 echo "# 5. Publication"
 echo "#"
 echo
-
+pause
 _sq="'"
 echo -n "\$ "
 ${bold}
@@ -273,6 +291,8 @@ ${reset}
 run_skip cve publish $newID --cve-json '{"affected":[{"versions":[{"version":"0","status":"affected","lessThan":"1.0.3","versionType":"semver"}],"product":"Software","vendor":"Example"}],"descriptions":[{"lang":"en","value":"Example Software prior to 1.0.3 has a vulnerability, using cvelib, this is '${newID}'."}],"providerMetadata":{"orgId":"77e550a0-813d-44aa-8a55-a59814101335","shortName":"Paleozoic"},"references":[{"url":"https://www.example.com/security/EA-1234.html","name":"Example Security Advisory EA-1234"}]}'
 show cve show $newID
 pause_clear cve show --show-record $newID
+pause
+clear
 echo -n "\$ "
 ${bold}
 echo cve publish $newID --cve-json $_sq'{"affected":[{"versions":[{"version":"0","status":"affected","lessThan":"1.0.3","versionType":"semver"}],"product":"Software","vendor":"Example"}],"descriptions":[{"lang":"en","value":"Example Software prior to 1.0.3 has a vulnerability, using cvelib, this is '${newID}', with a recent update."}],"providerMetadata":{"orgId":"77e550a0-813d-44aa-8a55-a59814101335","shortName":"Paleozoic"},"references":[{"url":"https://www.example.com/security/EA-1234.html","name":"Example Security Advisory EA-1234"}]}'$_sq
@@ -280,8 +300,15 @@ ${reset}
 run_skip cve publish $newID --cve-json '{"affected":[{"versions":[{"version":"0","status":"affected","lessThan":"1.0.3","versionType":"semver"}],"product":"Software","vendor":"Example"}],"descriptions":[{"lang":"en","value":"Example Software prior to 1.0.3 has a vulnerability, using cvelib, this is '${newID}', with a recent update."}],"providerMetadata":{"orgId":"77e550a0-813d-44aa-8a55-a59814101335","shortName":"Paleozoic"},"references":[{"url":"https://www.example.com/security/EA-1234.html","name":"Example Security Advisory EA-1234"}]}'
 pause_clear cve show --show-record $newID
 pause
-
 deactivate
+clear
+echo
+echo "Thanks Red Hat!"
+echo
+echo "https://github.com/RedHatProductSecurity/cvelib"
+echo
+echo "https://github.com/zmanion/CVE"
+echo
 echo "Fin"
 echo
 
