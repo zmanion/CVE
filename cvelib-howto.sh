@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 #
-# A script to demonstrate cvelib, much hackery to support
-# flow during a live presentation and to both display and execute
+# A script to demonstrate cvelib, much hackery to support flow
+# during a live presentation and to both display and execute
 # shell commands correctly.
 #
 
@@ -14,6 +14,7 @@ CVE_USER=zmanion@protonmail.com
 CVE_ORG=Paleozoic
 CVE_API_KEY=
 
+# change these for a fresh demo
 oldUserID=fu@paleozoic.example.com
 oldUserNameFirst=Fu
 oldUserNameLast=Bar
@@ -21,64 +22,17 @@ newUserID=foo@@paleozoic.example.com
 newUserNameFirst=Foo
 newUserNameLast="$oldUserNameLast"
 
-# testing
-oldUserID=fu@bar.net
-oldUserNameFirst=Fum
-oldUserNameLast=Ble
-newUserID=foo@bar.org
-newUserNameFirst=Fume
-newUserNTameLast="$oldUserNameLast"
+#
+# Functions
+#
 
-#
-# Try to be cross-platform
-#
-# https://github.com/dylanaraps/neofetch/issues/433
-#
-case $OSTYPE in
-	linux* )
-		statUser='stat -c %u'
-		statPerms='stat -c %a'
-	;;
-	darwin* )
-		statUser='stat -f %u'
-		statPerms='stat -f %OLp'
-	;;
-	cygwin* )
-		statCmd='stat -c'
-	;;
-	FreeBSD )
-		statCmd='stat -f'
-	;;
-	* )
-		statCmd='stat -c'
-esac
-
-#
-# Store secret CVE_API_KEYs elsewhere
-# format of file containing API key:
-# ${CVE_ENVIRONMENT}:${CVE_API_KEY}
-# e.g.,
-# test:1234567890abcde
-# production:43434343434343
-#
-# CVE_ENVIRONMENT must be unique
-#
-cveAPIKeys=~/.cve
-
-#
-# Text formatting
-#
-reset='tput sgr0'
-bold='tput bold'
-
-#
-# Both displaying and executing complex commands correctly is hard
-#
+# when eval is on, call display/execute fuctions with "quoted command and args"
 eval_on()
 {
 	_eval=eval
 }
 
+# when eval is off, call display/execute fuctions with no quoted command and args
 eval_off()
 {
 	_eval=
@@ -120,6 +74,39 @@ run_skip()
 	done
 }
 
+#
+# Try to be cross-platform
+#
+# https://github.com/dylanaraps/neofetch/issues/433
+#
+case $OSTYPE in
+	linux* )
+		statUser='stat -c %u'
+		statPerms='stat -c %a'
+	;;
+	darwin* )
+		statUser='stat -f %u'
+		statPerms='stat -f %OLp'
+	;;
+	cygwin* )
+		statCmd='stat -c'
+	;;
+	FreeBSD )
+		statCmd='stat -f'
+	;;
+	* )
+		statCmd='stat -c'
+esac
+
+#
+# Text formatting, often works
+#
+reset='tput sgr0'
+bold='tput bold'
+
+#
+# Intro material
+#
 clear
 echo "#"
 echo "# Example script and commands to install, configure, and demonstrate cvelib."
@@ -140,11 +127,17 @@ echo "# e.g.,"
 echo "# test:1234567890abcde"
 echo "# production:43434343434343"
 echo "#"
+echo "# CVE_ENVIRONMENT must be unique and supported by CVE Services."
+echo "#"
 echo "# This script will clone the cvelib GitHub repository from the current"
 echo "# directory ($(pwd)/cvelib)."
 echo "#"
 pause
 
+#
+# Get secret API keys, not stored in this script
+#
+cveAPIKeys=~/.cve
 echo
 echo "Reading CVE_API_KEY from $cveAPIKeys for $CVE_ENVIRONMENT environment..."
 if ! [ -f ${cveAPIKeys} ]; then
@@ -217,11 +210,14 @@ show export CVE_API_KEY="************************************"
 
 export CVE_API_KEY="$s_CVE_API_KEY"
 show cve --help
-#_eval=eval
+#eval_on # pass pipe to function
 #show "cve --help | less"
-#_eval=
+#eval_off
 pause
 
+#
+# User management
+#
 clear
 echo "#"
 echo "# 3. User management"
@@ -249,6 +245,9 @@ show cve user --username $newUserID
 show cve user reset-key --username $newUserID
 pause
 
+#
+# Reservation
+#
 clear
 echo "#"
 echo "# 4. Reservation"
@@ -270,13 +269,19 @@ pause
 clear
 reserveTemp=$(mktemp)
 trap 'rm -f "$reserveTemp"' EXIT
-_eval=eval
+eval_on # needed to pass pipe to function
 show "cve reserve --raw | tee $reserveTemp"
-_eval=
+eval_off
 newID=$(cat $reserveTemp | python -c 'import json,sys;cve=json.load(sys.stdin);print(cve["cve_ids"][0]["cve_id"])')
 pause_clear cve show $newID
 pause
 
+#
+# Publication
+#
+# Hacks to display exactly what will be executed
+# Passing quotes, spaces, braces to a bash function is tricky
+#
 clear
 echo "#"
 echo "# 5. Publication"
@@ -305,11 +310,10 @@ clear
 echo
 echo "Thanks Red Hat!"
 echo
-echo "https://github.com/RedHatProductSecurity/cvelib"
+echo "<https://github.com/RedHatProductSecurity/cvelib>"
 echo
-echo "https://github.com/zmanion/CVE"
+echo "<https://github.com/zmanion/CVE>"
 echo
 echo "Fin"
-echo
 
 exit 0
