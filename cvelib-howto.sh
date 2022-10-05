@@ -18,7 +18,7 @@ CVE_API_KEY=
 oldUserID=fu@paleozoic.example.com
 oldUserNameFirst=Fu
 oldUserNameLast=Bar
-newUserID=foo@@paleozoic.example.com
+newUserID=foo@paleozoic.example.com
 newUserNameFirst=Foo
 newUserNameLast="$oldUserNameLast"
 
@@ -315,5 +315,6 @@ echo
 echo "<https://github.com/zmanion/CVE>"
 echo
 echo "Fin"
+echo
 
 exit 0
