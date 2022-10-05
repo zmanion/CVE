@@ -20,8 +20,6 @@ Python application, supports user management, reservation, submission, does not 
 
 Source: https://github.com/RedHatProductSecurity/cvelib
 
-For Services 2.1 and JSON 5.0 testing as of September 2022, use the [cve-services-2.1.0](https://github.com/RedHatProductSecurity/cvelib/tree/cve-services-2.1.0) branch.
-
 ## CVE.js
 JavaScript library (ECMAScript 6 requirement?), not reviewed.
 
