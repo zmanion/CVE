@@ -35,7 +35,7 @@ case $OSTYPE in
 	;;
 	darwin* )
 		statUser='stat -f %u'
-		statPerms='stat -c %OLp'
+		statPerms='stat -f %OLp'
 	;;
 	cygwin* )
 		statCmd='stat -c'
@@ -65,43 +65,37 @@ cveAPIKeys=~/.cve
 reset='tput sgr0'
 bold='tput bold'
 
+#
+# Displaying and executing complex commands correctly is hard
+#
+_eval=
+
 pause()
 {
 	read -sn1
 }
 
-run_wait()
+pause_clear()
 {
-	if [ "$2" == 'c' ]; then
-		pause
-		clear
-	fi
-	echo -n "\$ "
-	${bold}
-	echo "$1"
-	${reset}
-	while read -srn1 key; do
-		if [ "$key" = 'r' ]; then
-			eval "$1"
-			echo
-			return
-		elif [ "$key" = 's' ]; then
-			echo "Skipping command"
-			echo
-			return
-		fi
-	done
+	pause
+	clear
+	show "$@"
 }
 
-run_wait2()
+show()
 {
 	echo -n "\$ "
 	${bold}
-	echo "$1"
+	echo "$@"
 	${reset}
+	run_skip "$@"
+}
+
+run_skip()
+{
 	while read -srn1 key; do
 		if [ "$key" = 'r' ]; then
-			eval "$1"
+			$_eval "$@"
 			echo
 			return
 		elif [ "$key" = 's' ]; then
@@ -113,7 +107,32 @@ run_wait2()
 }
 
 clear
-echo "Reading CVE_API_KEY from $cveAPIKeys..."
+echo "#"
+echo "# Example script and commands to install, configure, and demonstrate cvelib."
+echo "#"
+echo "# Press 'r' to run the proposed command, 's' to skip."
+echo "#"
+echo "# Configure this script with the following information:"
+echo "#"
+echo "# CVE_ENVIRONMENT"
+echo "# CVE_USER"
+echo "# CVE_ORG"
+echo "# CVE_API_KEY"
+echo "#"
+echo "# Secret API keys are read from the file ~/.cve with the format:"
+echo "#"
+echo "# \${CVE_ENVIRONMENT}:\${CVE_API_KEY}"
+echo "# e.g.,"
+echo "# test:1234567890abcde"
+echo "# production:43434343434343"
+echo "#"
+echo "# This script will clone the cvelib GitHub repository from the current"
+echo "# directory ($(pwd)/cvelib)."
+echo "#"
+pause
+
+echo
+echo "Reading CVE_API_KEY from $cveAPIKeys for $CVE_ENVIRONMENT environment..."
 if ! [ -f ${cveAPIKeys} ]; then
 	echo "$cveAPIKeys does not exist."
 	echo
@@ -137,24 +156,6 @@ if [ -z "$s_CVE_API_KEY" ]; then
 fi
 sleep 1
 
-clear
-echo "#"
-echo "# Example script and commands to install, configure, and demonstrate cvelib."
-echo "#"
-echo "# Press 'r' to run the proposed command, 's' to skip."
-echo "#"
-echo "# Configure this script with the following information:"
-echo "#"
-echo "# CVE_ENVIRONMENT"
-echo "# CVE_USER"
-echo "# CVE_ORG"
-echo "# CVE_API_KEY"
-echo "#"
-echo "# This script will clone the cvelib GitHub repository from the current"
-echo "# directory (./cvelib)."
-echo "#"
-pause
-
 #
 # Versions of some things
 #
@@ -163,8 +164,8 @@ echo "#"
 echo "# 1. Versions of some things"
 echo "#"
 echo
-run_wait "bash --version"
-run_wait "python -V"
+show bash --version
+show python -V
 # actual check for Python 3
 python -V | grep -q 'Python 3.'
 if [ $? != 0 ]; then
@@ -172,7 +173,7 @@ if [ $? != 0 ]; then
 	echo
 	exit 94
 fi
-run_wait "git --version"
+show git --version
 pause
 
 #
@@ -183,22 +184,26 @@ echo "#"
 echo "# 2. Install cvelib, configure environment"
 echo "#"
 echo
-run_wait "git clone https://github.com/RedHatProductSecurity/cvelib.git"
-run_wait "cd cvelib"
-run_wait "pwd"
-echo "# Using venv (Python 3.6+), venv is not necessary"
-#run_wait "python3 -m venv venv"
-run_wait "python -m venv venv"
-run_wait "source venv/bin/activate"
-run_wait "pip install --upgrade pip"
-run_wait "pip install -e ."
-run_wait "which cve"
-run_wait "export CVE_ENVIRONMENT="$CVE_ENVIRONMENT""
-run_wait "export CVE_USER="$CVE_USER""
-run_wait "export CVE_ORG="$CVE_ORG""
-run_wait "export CVE_API_KEY=************************************"
+show git clone https://github.com/RedHatProductSecurity/cvelib.git
+show cd cvelib
+show pwd
+echo # Using venv (Python 3.6+), venv is not necessary"
+#show python3 -m venv venv
+show python -m venv venv
+show source venv/bin/activate
+show pip install --upgrade pip
+show pip install -e .
+show which cve
+show export CVE_ENVIRONMENT="$CVE_ENVIRONMENT"
+show export CVE_USER="$CVE_USER"
+show export CVE_ORG="$CVE_ORG"
+show export CVE_API_KEY="************************************"
+
 export CVE_API_KEY="$s_CVE_API_KEY"
-run_wait "cve --help | less"
+show cve --help
+#_eval=eval
+#show "cve --help | less"
+#_eval=
 pause
 
 clear
@@ -206,24 +211,25 @@ echo "#"
 echo "# 3. User management"
 echo "#"
 echo
-run_wait "cve org"
-run_wait "cve org users"
-run_wait "cve user create --help" c
-run_wait "cve user create --username $oldUserID --name-first $oldUserNameFirst --name-last $oldUserNameLast" c
-run_wait "cve user --username $oldUserID"
-run_wait "cve user update --help" c
-run_wait "cve user update --username $oldUserID --name-first $newUserNameFirst" c
-run_wait "cve user --username $oldUserID"
-run_wait "cve user update --username $oldUserID --new-username $newUserID"
-run_wait "cve user --username $newUserID"
-run_wait "cve user update --username $newUserID --add-role ADMIN"
-run_wait "cve user --username $newUserID"
-run_wait "cve user update --username $newUserID --remove-role ADMIN"
-run_wait "cve user --username $newUserID"
-run_wait "cve user update --username $newUserID --mark-inactive"
-run_wait "cve user --username $newUserID"
-run_wait "cve user update --username $newUserID --mark-active"
-run_wait "cve user --username $newUserID"
+show cve org
+show cve org users
+pause_clear cve user create --help
+pause_clear cve user create --username $oldUserID --name-first $oldUserNameFirst --name-last $oldUserNameLast
+show cve user --username $oldUserID
+pause_clear cve user update --help
+pause_clear cve user update --username $oldUserID --name-first $newUserNameFirst
+show cve user --username $oldUserID
+show cve user update --username $oldUserID --new-username $newUserID
+show cve user --username $newUserID
+show cve user update --username $newUserID --add-role ADMIN
+show cve user --username $newUserID
+show cve user update --username $newUserID --remove-role ADMIN
+show cve user --username $newUserID
+show cve user update --username $newUserID --mark-inactive
+show cve user --username $newUserID
+show cve user update --username $newUserID --mark-active
+show cve user --username $newUserID
+show cve user reset-key --username $newUserID
 pause
 
 clear
@@ -231,11 +237,11 @@ echo "#"
 echo "# 4. Reservation"
 echo "#"
 echo
-run_wait "cve list --help"
-run_wait "cve list" c
-run_wait "cve list --state rejected" c
-run_wait "cve list --state published" c
-run_wait "cve list --state reserved" c
+show cve list --help
+pause_clear cve list
+pause_clear cve list --state rejected
+pause_clear cve list --state published
+pause_clear cve list --state reserved
 pause
 clear
 echo "N.B. API changes from 1.1 to 2.1 include:"
@@ -246,9 +252,11 @@ pause
 clear
 reserveTemp=$(mktemp)
 trap 'rm -f "$reserveTemp"' EXIT
-run_wait "cve reserve --raw | tee $reserveTemp"
+_eval=eval
+show "cve reserve --raw | tee $reserveTemp"
+_eval=
 newID=$(cat $reserveTemp | python -c 'import json,sys;cve=json.load(sys.stdin);print(cve["cve_ids"][0]["cve_id"])')
-run_wait "cve list | grep $newID" c
+pause_clear cve show $newID
 pause
 
 clear
@@ -256,13 +264,21 @@ echo "#"
 echo "# 5. Publication"
 echo "#"
 echo
-set -x
-run_wait2 "cve publish $newID --json '{"affected":[{"versions":[{"version":"0","status":"affected","lessThan":"1.0.3","versionType":"semver"}],"product":"Software","vendor":"Example"}],"descriptions":[{"lang":"en","value":"Example Software prior to 1.0.3 has a vulnerability, using ${0}, this is ${newID}."}],"providerMetadata":{"orgId":"77e550a0-813d-44aa-8a55-a59814101335","shortName":"Paleozoic"},"references":[{"url":"https://www.example.com/security/EA-1234.html","name":"Example Security Advisory EA-1234"}]}'"
-run_wait "cve list --state published | grep $newID"
-run_wait "cve show $newID"
-run_wait "cve show --show-record $newID | less"
-run_wait2 "cve publish $newID --json '{"affected":[{"versions":[{"version":"0","status":"affected","lessThan":"1.0.3","versionType":"semver"}],"product":"Software","vendor":"Example"}],"descriptions":[{"lang":"en","value":"Example Software prior to 1.0.3 has a vulnerability, using ${0}, this is ${newID}, with a recent update."}],"providerMetadata":{"orgId":"77e550a0-813d-44aa-8a55-a59814101335","shortName":"Paleozoic"},"references":[{"url":"https://www.example.com/security/EA-1234.html","name":"Example Security Advisory EA-1234"}]}'"
-run_wait "cve show --show-record $newID | less"
+
+_sq="'"
+echo -n "\$ "
+${bold}
+echo cve publish $newID --cve-json $_sq'{"affected":[{"versions":[{"version":"0","status":"affected","lessThan":"1.0.3","versionType":"semver"}],"product":"Software","vendor":"Example"}],"descriptions":[{"lang":"en","value":"Example Software prior to 1.0.3 has a vulnerability, using cvelib, this is '${newID}'."}],"providerMetadata":{"orgId":"77e550a0-813d-44aa-8a55-a59814101335","shortName":"Paleozoic"},"references":[{"url":"https://www.example.com/security/EA-1234.html","name":"Example Security Advisory EA-1234"}]}'$_sq
+${reset}
+run_skip cve publish $newID --cve-json '{"affected":[{"versions":[{"version":"0","status":"affected","lessThan":"1.0.3","versionType":"semver"}],"product":"Software","vendor":"Example"}],"descriptions":[{"lang":"en","value":"Example Software prior to 1.0.3 has a vulnerability, using cvelib, this is '${newID}'."}],"providerMetadata":{"orgId":"77e550a0-813d-44aa-8a55-a59814101335","shortName":"Paleozoic"},"references":[{"url":"https://www.example.com/security/EA-1234.html","name":"Example Security Advisory EA-1234"}]}'
+show cve show $newID
+pause_clear cve show --show-record $newID
+echo -n "\$ "
+${bold}
+echo cve publish $newID --cve-json $_sq'{"affected":[{"versions":[{"version":"0","status":"affected","lessThan":"1.0.3","versionType":"semver"}],"product":"Software","vendor":"Example"}],"descriptions":[{"lang":"en","value":"Example Software prior to 1.0.3 has a vulnerability, using cvelib, this is '${newID}', with a recent update."}],"providerMetadata":{"orgId":"77e550a0-813d-44aa-8a55-a59814101335","shortName":"Paleozoic"},"references":[{"url":"https://www.example.com/security/EA-1234.html","name":"Example Security Advisory EA-1234"}]}'$_sq
+${reset}
+run_skip cve publish $newID --cve-json '{"affected":[{"versions":[{"version":"0","status":"affected","lessThan":"1.0.3","versionType":"semver"}],"product":"Software","vendor":"Example"}],"descriptions":[{"lang":"en","value":"Example Software prior to 1.0.3 has a vulnerability, using cvelib, this is '${newID}', with a recent update."}],"providerMetadata":{"orgId":"77e550a0-813d-44aa-8a55-a59814101335","shortName":"Paleozoic"},"references":[{"url":"https://www.example.com/security/EA-1234.html","name":"Example Security Advisory EA-1234"}]}'
+pause_clear cve show --show-record $newID
 pause
 
 deactivate
