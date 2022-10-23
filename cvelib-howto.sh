@@ -174,7 +174,7 @@ echo
 pause
 show bash --version
 show python -V
-# actual check for Python 3
+# check for Python 3
 python -V | grep -q 'Python 3.'
 if [ $? != 0 ]; then
 	echo "cvelib requires Python 3."
@@ -284,6 +284,10 @@ echo "# 5. Publication"
 echo "#"
 echo
 pause
+
+#
+# publish with inline JSON
+#
 _sq="'"
 echo -n "\$ "
 ${bold}
@@ -300,8 +304,18 @@ echo cve publish $newID --cve-json $_sq'{"affected":[{"versions":[{"version":"0"
 ${reset}
 runSkip cve publish $newID --cve-json '{"affected":[{"versions":[{"version":"0","status":"affected","lessThan":"1.0.3","versionType":"semver"}],"product":"Software","vendor":"Example"}],"descriptions":[{"lang":"en","value":"Example Software prior to 1.0.3 has a vulnerability, using cvelib, this is '${newID}', with a recent update."}],"providerMetadata":{"orgId":"77e550a0-813d-44aa-8a55-a59814101335","shortName":"Paleozoic"},"references":[{"url":"https://www.example.com/security/EA-1234.html","name":"Example Security Advisory EA-1234"}]}'
 pauseClear cve show --show-record $newID
+
+#
+# publish with JSON file
+#
+
+
 pause
-deactivate
+show source venv/bin/deactivate
+
+#
+# done
+#
 clear
 echo
 echo "Thanks Red Hat!"
