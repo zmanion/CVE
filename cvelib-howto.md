@@ -5,7 +5,7 @@ Scripts to demonstrate [cvelib](https://github.com/RedHatProductSecurity/cvelib)
 Copy `cvelib.conf` and `cvelib-howto.conf` to
 
 - bash: `$HOME/.config`
-- Windows cmd: %USERPROFILE%\.config`
+- Windows cmd: `%USERPROFILE%\.config`
 
 Edit the files to your liking, `cvelib.conf` will contain your secret CVE Services API key,  protect it appropriately.
 
