@@ -1,7 +1,7 @@
 rem
 rem Demonstration of cvelib on Windows
 rem
-rem A way to wait: 'timeout 2 >nul'
+rem A way to sleep: 'timeout 2 >nul'
 rem
 
 @cls
@@ -79,11 +79,9 @@ call :show "set CVE_ORG=%CVE_ORG%"
 call :show "set CVE_API_KEY=************************************"
 set CVE_API_KEY=%_CVE_API_KEY%
 
-goto :reservationtest
-
 rem sort out user cve.exe location
 rem %APPDATA%\Python\Python311-arm64\Scripts'
-rem why do this? working in venv
+rem unnecessary since we're using venv
 rem but here's how
 rem ##for /f "tokens=1" %%a in ('python -c "import os,sysconfig;print(sysconfig.get_path('scripts',f'{os.name}_user'))"') do (
 rem ##	set pyUserPath=%%a
@@ -127,7 +125,6 @@ call :runSkipClear "cve list --state published"
 call :runSkipClear "cve list --state reserved"
 call :runSkip
 cls
-:reservationtest
 echo N.B. API changes from 1.1 to 2.1 include^:
 echo   'reject' --^> 'rejected'
 echo   'public' --^> 'published'
@@ -148,25 +145,68 @@ cls
 echo #
 echo # 5. Publication
 echo #
+
+rem
+rem publish from command line
+rem
 call :runSkip
-echo %bold%cve publish %newID% --cve-json "{\"affected\":[{\"versions\":[{\"version\":\"0\",\"status\":\"affected\",\"lessThan\":\"1.0.3\",\"versionType\":\"semver\"}],\"product\":\"Software\",\"vendor\":\"Example\"}],\"descriptions\":[{\"lang\":\"en\",\"value\":\"Example Software prior to 1.0.3 has a vulnerability, using cvelib, this is %newID%.\"}],\"providerMetadata\":{\"orgId\":\"77e550a0-813d-44aa-8a55-a59814101335\",\"shortName\":\"Paleozoic\"},\"references\":[{\"url\":\"https://www.example.com/security/EA-1234.html\",\"name\":\"Example Security Advisory EA-1234\"}]}"%normal%
+echo %bold%cve publish %newID% --cve-json "{\"affected\":[{\"versions\":[{\"version\":\"0\",\"status\":\"affected\",\"lessThan\":\"1.0.3\",\"versionType\":\"semver\"}],\"product\":\"Software\",\"vendor\":\"Example\"}],\"descriptions\":[{\"lang\":\"en\",\"value\":\"Example Software prior to 1.0.3 has a vulnerability, using cvelib, this is %newID%.\"}],\"references\":[{\"url\":\"https://www.example.com/security/EA-1234.html\",\"name\":\"Example Security Advisory EA-1234\"}]}"%normal%
 call :runSkip
 if %errorlevel% equ 1 (
-	cve publish %newID% --cve-json "{\"affected\":[{\"versions\":[{\"version\":\"0\",\"status\":\"affected\",\"lessThan\":\"1.0.3\",\"versionType\":\"semver\"}],\"product\":\"Software\",\"vendor\":\"Example\"}],\"descriptions\":[{\"lang\":\"en\",\"value\":\"Example Software prior to 1.0.3 has a vulnerability, using cvelib, this is %newID%.\"}],\"providerMetadata\":{\"orgId\":\"77e550a0-813d-44aa-8a55-a59814101335\",\"shortName\":\"Paleozoic\"},\"references\":[{\"url\":\"https://www.example.com/security/EA-1234.html\",\"name\":\"Example Security Advisory EA-1234\"}]}"
+	cve publish %newID% --cve-json "{\"affected\":[{\"versions\":[{\"version\":\"0\",\"status\":\"affected\",\"lessThan\":\"1.0.3\",\"versionType\":\"semver\"}],\"product\":\"Software\",\"vendor\":\"Example\"}],\"descriptions\":[{\"lang\":\"en\",\"value\":\"Example Software prior to 1.0.3 has a vulnerability, using cvelib, this is %newID%.\"}],\"references\":[{\"url\":\"https://www.example.com/security/EA-1234.html\",\"name\":\"Example Security Advisory EA-1234\"}]}"
 	echo.
 )
-
 call :show "cve show %newID%"
 call :runskipClear "cve show --show-record %newID%"
 call :runSkip
 cls
-echo %bold%cve publish %newID% --cve-json "{\"affected\":[{\"versions\":[{\"version\":\"0\",\"status\":\"affected\",\"lessThan\":\"1.0.3\",\"versionType\":\"semver\"}],\"product\":\"Software\",\"vendor\":\"Example\"}],\"descriptions\":[{\"lang\":\"en\",\"value\":\"Example Software prior to 1.0.3 has a vulnerability, using cvelib, this is %newID%, with a recent update.\"}],\"providerMetadata\":{\"orgId\":\"77e550a0-813d-44aa-8a55-a59814101335\",\"shortName\":\"Paleozoic\"},\"references\":[{\"url\":\"https://www.example.com/security/EA-1234.html\",\"name\":\"Example Security Advisory EA-1234\"}]}"%normal%
+echo %bold%cve publish %newID% --cve-json "{\"affected\":[{\"versions\":[{\"version\":\"0\",\"status\":\"affected\",\"lessThan\":\"1.0.3\",\"versionType\":\"semver\"}],\"product\":\"Software\",\"vendor\":\"Example\"}],\"descriptions\":[{\"lang\":\"en\",\"value\":\"Example Software prior to 1.0.3 has a vulnerability, using cvelib, this is %newID%, with a recent update.\"}],\"references\":[{\"url\":\"https://www.example.com/security/EA-1234.html\",\"name\":\"Example Security Advisory EA-1234\"}]}"%normal%
 call :runSkip
 if %errorlevel% equ 1 (
-	cve publish %newID% --cve-json "{\"affected\":[{\"versions\":[{\"version\":\"0\",\"status\":\"affected\",\"lessThan\":\"1.0.3\",\"versionType\":\"semver\"}],\"product\":\"Software\",\"vendor\":\"Example\"}],\"descriptions\":[{\"lang\":\"en\",\"value\":\"Example Software prior to 1.0.3 has a vulnerability, using cvelib, this is %newID%, with a recent update.\"}],\"providerMetadata\":{\"orgId\":\"77e550a0-813d-44aa-8a55-a59814101335\",\"shortName\":\"Paleozoic\"},\"references\":[{\"url\":\"https://www.example.com/security/EA-1234.html\",\"name\":\"Example Security Advisory EA-1234\"}]}"
+	cve publish %newID% --cve-json "{\"affected\":[{\"versions\":[{\"version\":\"0\",\"status\":\"affected\",\"lessThan\":\"1.0.3\",\"versionType\":\"semver\"}],\"product\":\"Software\",\"vendor\":\"Example\"}],\"descriptions\":[{\"lang\":\"en\",\"value\":\"Example Software prior to 1.0.3 has a vulnerability, using cvelib, this is %newID%, with a recent update.\"}],\"references\":[{\"url\":\"https://www.example.com/security/EA-1234.html\",\"name\":\"Example Security Advisory EA-1234\"}]}"
 	echo.
 )
 call :runskipClear "cve show --show-record %newID%"
+
+rem
+rem publish from file
+rem
+set publishTemp=%~n0.%RANDOM%
+> %publishTemp% (
+@echo.{
+@echo.    "affected": [
+@echo.        {
+@echo.            "product": "Software",
+@echo.            "vendor": "Example",
+@echo.            "versions": [
+@echo.                {
+@echo.                    "lessThan": "1.0.3",
+@echo.                    "status": "affected",
+@echo.                    "version": "0",
+@echo.                    "versionType": "semver"
+@echo.                }
+@echo.           ]
+@echo.        }
+@echo.    ],
+@echo.    "descriptions": [
+@echo.        {
+@echo.            "lang": "en",
+@echo.            "value": "Example Software prior to 1.0.3 has a vulnerability, using cvelib, this is %newID%, with another update, using --cve-json-file %publishTemp%."
+@echo.        }
+@echo.    ],
+@echo.    "references": [
+@echo.        {
+@echo.            "name": "Example Security Advisory EA-1234",
+@echo.            "url": "https://www.example.com/security/EA-1234.html"
+@echo.        }
+@echo.    ]
+@echo.}
+)
+call :runSkipClear "type %publishTemp%"
+call :runSkipClear "cve publish %newID% --cve-json-file %publishTemp%"
+del %publishTemp%
+call :runskipClear "cve show --show-record %newID%"
+
 call :show "call venv\Scripts\deactivate.bat"
 cls
 goto :fin
@@ -183,7 +223,7 @@ echo.
 exit /b 0
 
 rem
-rem "functions" go at end 
+rem "functions" 
 rem
 
 :fileCheck
@@ -200,33 +240,6 @@ call :runSkip
 cls
 call :show %1
 exit /b 0
-
-:showRaw
-echo showRaw
-echo %bold%%1 %2 %3 %4 %5 %6 %7 %8 %9%normal%
-:runSkipRaw
-choice /c rsq /n >nul
-if %errorlevel%==1 (
-	%1 %2 %3 %4 %5 %6 %7 %8 %9
-	IF ERRORLEVEL 9009 (
-		rem echo.
-		rem echo ERRORLEVEL is ^>=9009, likely the command was not found.
-		exit 7
-	)
-	echo.
-	exit /b 0
-)
-if %errorlevel%==2 (
-	echo Skipping command
-	echo.
-	exit /b 0
-)
-if %errorlevel%==3 (
-	echo.
-	echo Quitting
-	exit 1
-)
-goto :runSkipRaw
 
 :show
 echo %bold%%~1%normal%
