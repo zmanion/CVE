@@ -11,4 +11,4 @@ Edit the files to your liking, `cvelib.conf` will contain your secret CVE Servic
 
 In Windows cmd, you probably want to run `cmd /c cvelib-howto.cmd` to keep a command prompt open when the script exits.
 
-The scripts check for some basic requirements (like git and Python 3), check and load configuration files, then run a series of cvelib commands. In most cases, press 'r' to run the proposed command, 's' to skip, and '2' to quit.
+The scripts check for some basic requirements (like git and Python 3), check and load configuration files, then run a series of cvelib commands. Press 'r' to **r**un the proposed command or advance the script, 's' to **s**kip, and 'q' to **q**uit.
