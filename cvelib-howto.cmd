@@ -18,11 +18,9 @@ set normal=%ESC%[0m
 echo.
 echo Windows demo of cvelib
 echo.
-echo You may want to run this as
+echo To keep the cmd shell open when the script exits, run as:
 echo.
 echo   'cmd /c cvelib-howto.bat'
-echo.
-echo ...due to how cmd.exe exits and/or my lack of understanding.
 echo.
 echo Press: 'r' to run the proposed command or advance the script
 echo        's' to skip the proposed command
@@ -32,18 +30,14 @@ call :runSkip
 echo Reading %cvelibConf%
 echo.
 call :fileCheck %cvelibConf%
-rem this could be a function
-for /f "tokens=1-2 delims== eol=#" %%a in (%cvelibConf%) do (
-	set %%a=%%b
-)
+call :loadConf %cvelibConf%
 set _CVE_API_KEY=%CVE_API_KEY%
 echo Reading %cvelibHowToConf%
 echo.
 call :fileCheck %cvelibHowToConf%
 rem check ownership and file permissions
-for /f "tokens=1-2 delims== eol=#" %%a in (%cvelibHowToConf%) do (
-	set %%a=%%b
-)
+rem cacls %USERPROFILE%\.config\cvelib.conf  | findstr /v /i \%USERNAME%
+call :loadConf %cvelibHowToConf%
 call :runSkip
 
 cls
@@ -231,6 +225,12 @@ if not exist %1 (
 	echo.
 	echo File %1 not found.
 	exit 6
+)
+exit /b 0
+
+:loadConf
+for /f "tokens=1-2 delims== eol=#" %%a in (%1) do (
+	set %%a=%%b
 )
 exit /b 0
 
