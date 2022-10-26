@@ -65,7 +65,7 @@ call :show "cd cvelib"
 call :show "cd"
 call :show "python -m venv venv"
 call :show "call venv\Scripts\activate.bat"
-call :show "pip install --upgrade pip"
+call :show "python -m pip install --upgrade pip"
 call :show "pip install -e ."
 call :show "set CVE_ENVIRONMENT=%CVE_ENVIRONMENT%
 call :show "set CVE_USER=%CVE_USER%"
