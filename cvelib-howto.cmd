@@ -1,12 +1,14 @@
+@cls
+@echo off
+setlocal
+
 rem
 rem Demonstration of cvelib on Windows
 rem
 rem A way to sleep: 'timeout 2 >nul'
 rem
 
-@cls
-@echo off
-setlocal
+
 set cvelibConf=%USERPROFILE%\.config\cvelib.conf
 set cvelibHowToConf=%USERPROFILE%\.config\cvelib-howto.conf
 for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (
