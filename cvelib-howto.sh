@@ -224,6 +224,7 @@ show cve org
 show cve org users
 pauseClear cve user create --help
 pauseClear cve user create --username $oldUserID --name-first $oldUserNameFirst --name-last $oldUserNameLast
+cve user reset-key --username $oldUserID >/dev/null 2>&1
 show cve user --username $oldUserID
 pauseClear cve user update --help
 pauseClear cve user update --username $oldUserID --name-first $newUserNameFirst
@@ -239,6 +240,7 @@ show cve user --username $newUserID
 show cve user update --username $newUserID --mark-active
 show cve user --username $newUserID
 show cve user reset-key --username $newUserID
+cve user reset-key --username $newUserID >/dev/null 2>&1
 pause
 
 #
