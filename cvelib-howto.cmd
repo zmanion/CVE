@@ -92,6 +92,7 @@ call :show "cve org"
 call :show "cve org users"
 call :show "cve user create --help"
 call :show "cve user create --username %oldUserID% --name-first %oldUserNameFirst% --name-last %oldUserNameLast%"
+cve user reset-key --username %oldUserID% >nul 2>&1
 call :show "cve user --username %oldUserID%"
 call :show "cve user update --help"
 call :show "cve user update --username %oldUserID% --name-first %newUserNameFirst%"
@@ -107,6 +108,7 @@ call :show "cve user --username %newUserID%"
 call :show "cve user update --username %newUserID% --mark-active"
 call :show "cve user --username %newUserID%"
 call :show "cve user reset-key --username %newUserID%"
+cve user reset-key --username %newUserID% >nul 2>&1
 call :runSkip
 
 cls
