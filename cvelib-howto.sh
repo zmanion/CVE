@@ -22,7 +22,7 @@ error()
 {
 	echo
 	echo "Error: $1 ($2)"
-	#echo
+	echo
 	exit $2
 }
 
@@ -36,6 +36,13 @@ evalOn()
 evalOff()
 {
 	_eval=
+}
+
+fileCheck()
+{
+	if ! [ -r $1 ]; then
+		error "The file '${1}' is not readable and may not exist" 8
+	fi
 }
 
 pause()
@@ -145,22 +152,23 @@ pause
 #
 echo
 echo "Reading ${cvelibConf}"
+fileCheck ${cvelibConf}
 if [ $(${statUser} ${cvelibConf}) != $(id -u) ]; then
 	error "${cvelibConf} not owned by current user." 80
 fi
 if [ $(${statPerms} ${cvelibConf}) != '600' ]; then
 	error "${cvelibConf} file permissions are not 600." 81
 fi
-source "${cvelibConf}" || error "Problem reading ${cvelibConf}" 9{$?}
+source "${cvelibConf}"
 _CVE_API_KEY=$CVE_API_KEY
-pause
 
 #
 # Read cvelib-howto config
 #
 echo
 echo "Reading ${cvelibHowToConf}"
-source "${cvelibHowToConf}" || error "Problem reading ${cvelibHowToConf}" 9{$?}
+fileCheck ${cvelibHowToConf}
+source "${cvelibHowToConf}"
 pause
 
 #
