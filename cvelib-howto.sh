@@ -216,6 +216,17 @@ show export CVE_USER="$CVE_USER"
 show export CVE_ORG="$CVE_ORG"
 show export CVE_API_KEY="************************************"
 CVE_API_KEY="$_CVE_API_KEY"
+
+if [ "$CVE_ENVIRONMENT" != "test" ]; then
+	${bold}
+	echo "WARNING: \$CVE_ENVIRONMENT is set to $CVE_ENVIRONMENT, this script is only intended"
+	echo "to run in the test environment."
+	${reset}
+	echo
+	echo "Press 'r' to continue to run, 'q' to quit."
+	pause
+fi
+
 show cve --help
 pause
 
