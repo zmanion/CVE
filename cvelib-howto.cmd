@@ -75,6 +75,14 @@ call :show "set CVE_ORG=%CVE_ORG%"
 call :show "set CVE_API_KEY=************************************"
 set CVE_API_KEY=%_CVE_API_KEY%
 
+if %CVE_ENVIRONMENT% neq test (
+	echo %bold%WARNING: %%CVE_ENVIRONMENT%% is set to %CVE_ENVIRONMENT%, this script is only intended%normal%
+	echo %bold%to run in the test environment.%normal%
+	echo.
+	echo Press 'r' to continue to run, 'q' to quit.
+	call :runSkip
+)
+
 rem sort out user cve.exe location
 rem %APPDATA%\Python\Python311-arm64\Scripts'
 rem unnecessary since we're using venv
@@ -247,6 +255,7 @@ exit /b 0
 
 :show
 echo %bold%%~1%normal%
+
 :runSkip
 choice /c rsq /n >nul
 if %errorlevel%==1 (
