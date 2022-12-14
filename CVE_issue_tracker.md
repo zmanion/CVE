@@ -21,4 +21,4 @@ A select summary of issues with CVE, focused on systemic issues, sometimes illus
 | 10 | CVE-2022-28956 (D-Link) duplicates 4 other CVE IDs | CVE lacks formal references, see (5) above | [https://github.com/CVEProject/Board-Discussions/issues/11](https://vulncheck.com/blog/moobot-uses-fake-vulnerability) |
 | 11 | CVE-2022-41049 (Microsoft MotW) covers two distinct vulnerabilities | 7.2.1 independently fixable | https://github.com/zmanion/CVE/issues/2 |
 | 12 | CVE-2022-41049 and CVE-2022-41091 (Microsoft MotW) have nearly identical descriptions | 8.2 Description requirements, also relationships (5) | https://github.com/zmanion/CVE/issues/3 |
-| 13 | For reservred but not populated entries "owning_cna":"[REDACTED]" | | |
+| 13 | For reservred but not populated entries "owning_cna":"[REDACTED]" | Why expose reserved state to any party other than reserving CNA and Secretariat? | https://github.com/CVEProject/Board-Discussions/issues/15 |
