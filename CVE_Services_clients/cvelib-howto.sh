@@ -53,7 +53,6 @@ pause()
 		elif [ "$key" = 'q' ]; then
 			echo
 			echo "Quitting"
-			echo
 			exit 1
 		fi
 	done
@@ -89,7 +88,6 @@ runSkip()
 		elif [ "$key" = 'q' ]; then
 			echo
 			echo "Quitting"
-			echo
 			exit 1
 		fi
 	done
@@ -139,11 +137,13 @@ echo "#"
 echo "# Configuration for cvelib, including the private API key, is read from"
 echo "# ${cvelibConf}."
 echo "#"
-echo "# Configuration for cvelib-howto.sh is read from"
-echo "# ${cvelibHowToConf}."
+echo "# Configuration for cvelib-howto.sh is read from:"
 echo "#"
-echo "# This script will clone the cvelib GitHub repository from the current"
-echo "# directory ($(pwd)/cvelib)."
+echo "#   ${cvelibHowToConf}"
+echo "#"
+echo "# This script will clone the cvelib GitHub repository in to:"
+echo "#"
+echo "#   $(pwd)/cvelib"
 echo "#"
 pause
 
@@ -201,10 +201,16 @@ echo "# 2. Install cvelib, configure environment"
 echo "#"
 echo
 pause
+if [ -e ./cvelib ]; then
+	echo "./cvelib already exists, delete?"
+	echo
+	show rm -rf ./cvelib
+fi
 show git clone https://github.com/RedHatProductSecurity/cvelib.git
 show cd cvelib
 show pwd
-echo # Using venv (Python 3.6+), venv is not necessary"
+
+# Using venv (Python 3.6+), venv is not necessary"
 #show python3 -m venv venv
 show python -m venv venv
 show source venv/bin/activate
@@ -243,6 +249,7 @@ show cve org
 show cve org users
 pauseClear cve user create --help
 pauseClear cve user create --username $oldUserID --name-first $oldUserNameFirst --name-last $oldUserNameLast
+# quickly and quietly disable the API key that was just displayed
 cve user reset-key --username $oldUserID >/dev/null 2>&1
 show cve user --username $oldUserID
 pauseClear cve user update --help
@@ -380,6 +387,5 @@ echo
 echo "<https://github.com/zmanion/CVE>"
 echo
 echo "Fin"
-echo
 
 exit 0

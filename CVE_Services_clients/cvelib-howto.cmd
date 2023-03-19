@@ -62,6 +62,11 @@ echo #
 echo # 2. Install cvelib, configure environment
 echo #
 call :runSkip
+if exist ./cvelib (
+	echo "./cvelib already exists, delete?"
+	echo.
+	call :show "rd /s /q ./cvelib"
+)
 call :show "git clone https://github.com/RedHatProductSecurity/cvelib.git"
 call :show "cd cvelib"
 call :show "cd"
