@@ -22,7 +22,7 @@ echo Windows demo of cvelib
 echo.
 echo To keep the cmd shell open when the script exits, run as:
 echo.
-echo   'cmd /c cvelib-howto.bat'
+echo   'cmd /c cvelib-howto.cmd'
 echo.
 echo Press: 'r' to run the proposed command or advance the script
 echo        's' to skip the proposed command
