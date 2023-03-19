@@ -30,10 +30,10 @@ echo        'q' to quit
 echo.
 call :runSkip
 echo Reading %cvelibConf%
-echo.
 call :fileCheck %cvelibConf%
 call :loadConf %cvelibConf%
 set _CVE_API_KEY=%CVE_API_KEY%
+echo.
 echo Reading %cvelibHowToConf%
 echo.
 call :fileCheck %cvelibHowToConf%
