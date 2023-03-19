@@ -8,7 +8,6 @@ rem
 rem A way to sleep: 'timeout 2 >nul'
 rem
 
-
 set cvelibConf=%USERPROFILE%\.config\cvelib.conf
 set cvelibHowToConf=%USERPROFILE%\.config\cvelib-howto.conf
 for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (
@@ -35,11 +34,11 @@ call :loadConf %cvelibConf%
 set _CVE_API_KEY=%CVE_API_KEY%
 echo.
 echo Reading %cvelibHowToConf%
-echo.
 call :fileCheck %cvelibHowToConf%
 rem check ownership and file permissions
 rem cacls %USERPROFILE%\.config\cvelib.conf  | findstr /v /i \%USERNAME%
 call :loadConf %cvelibHowToConf%
+echo.
 call :runSkip
 
 cls
@@ -62,10 +61,10 @@ echo #
 echo # 2. Install cvelib, configure environment
 echo #
 call :runSkip
-if exist ./cvelib (
-	echo "./cvelib already exists, delete?"
+if exist cvelib (
+	echo cvelib already exists, delete?
 	echo.
-	call :show "rd /s /q ./cvelib"
+	call :show "rd /s /q cvelib"
 )
 call :show "git clone https://github.com/RedHatProductSecurity/cvelib.git"
 call :show "cd cvelib"
