@@ -13,8 +13,8 @@ In roughly the second half of 2023, the CNA Operational Rules were revised. This
 ### 1 "Governance" content moved to a separate document
 The revised CNA Operational Rules are focused on administering and managing CNAs and assigning CVE IDs and publishing and maintaining CVE Records. The governance rules have been moved to (where?).
 
-| Current | New |
-| --- | --- |
+| Old | New |
+| :--- | :--- |
 | 3 Roots | governance doc |
 | 4 CNA of Last Resort (CNA-LR) | governance doc? |
 | more |  |
@@ -26,13 +26,13 @@ Program-wide content has been removed from the document but remains on cve.org, 
 
 asdf
 
-| Current | New |
-| --- | --- |
+| Old | New |
+| :--- | :--- |
 | 8 CVE Record Requirements | 5 CVE Record Requirements |
 | more | |
 
-### Supplier and Product terms
+### 4 Supplier and Product terms
 
-### Physical attacks
+### 5 Physical attacks
 
-### Malicious code
+### 6 Malicious code
