@@ -21,3 +21,14 @@ The revised CNA Operational Rules are focused on administering and managing CNAs
 
 #### 2 Program-wide content removed
 Program-wide content has been removed from the document but remains on cve.org, examples include Appendix A: Definitions (integrated into cve.org [Glossary](https://www.cve.org/ResourcesSupport/Glossary)) and 1.2 CNA Program Structure (already on [cve.org](https://www.cve.org/ProgramOrganization/Structure)).
+
+#### 3 Reorganized sections
+
+asdf
+
+| Current | New |
+| --- | --- |
+| 8 CVE Record Requirements | 5 CVE Record Requirements |
+| more | |
+
+#### Supplier and Product terms
