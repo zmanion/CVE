@@ -47,3 +47,20 @@ Made "Supplier" the term for referring to any software or hardware creator, prod
 ### 7 Malicious code
 
 (Section 4.1.10) Added clarification that malicious code should not be assigned CVE: "CNAs SHOULD NOT assign CVE IDs for malicious code. This includes legitimate software that has been modified to become malicious, for example, "trojan horses” or similar supply chain compromises."
+
+### 8 Section 2: Changes to the CNA Operational Rules
+
+(Section 2) Expanded and moved a section explaining the process for changing or updating the CNA Operational Rules. Previously Section 11.
+
+| Old | New |
+| :--- | :--- |
+| 11 CNA Rules Updates | 2 Changes to the CNA Operational Rules |
+
+### 9 Section 1.2	Adherence to CVE Program Policies and Rules
+
+(Section 1.2) Now contains clauses mandating that CNAs participating in the CVE Program adhere to the CVE Program rules, the CVE Terms of Use License, and the CNA Operational Rules.
+
+### 10 "Sub-CNAs" Removed
+
+Formerly Section 2, "Sub-CNAs" is no longer in use as a term. Under the new rules, all CVE Program participants who can assign CVE IDs are CNAs or CNAs of Last Resort (CNA-LR). 
+
