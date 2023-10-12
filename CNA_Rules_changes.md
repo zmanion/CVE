@@ -31,8 +31,19 @@ asdf
 | 8 CVE Record Requirements | 5 CVE Record Requirements |
 | more | |
 
-### 4 Supplier and Product terms
+### 4 Introduction changed
 
-### 5 Physical attacks
+Section 1 (Introduction) was edited significantly. CNA Program structure explanation and graphics moved/removed. Some text retained from the 'Old' document but re-organized.
 
-### 6 Malicious code
+
+### 5 Supplier and Product terms
+
+Made "Supplier" the term for referring to any software or hardware creator, producer, vendor, distributor, etc. and "Product" the term for referring to any unit of software or hardware.
+
+### 6 Physical attacks
+
+(Section 4.1.8) Added further clarification on the appropriate CNA response for physical attacks or vulnerabilities via a physical vector: "CNAs MUST NOT assign CVE IDs for physical attacks unless there is a vulnerability in a specific security feature, claim, or policy that protects the system against physical attacks. For example, if a system deletes user data after a number of failed login attempts or only boots with known good components, and such protections can be reduced or bypassed by a vulnerability, then a CVE ID SHOULD be assigned. "
+
+### 7 Malicious code
+
+(Section 4.1.10) Added clarification that malicious code should not be assigned CVE: "CNAs SHOULD NOT assign CVE IDs for malicious code. This includes legitimate software that has been modified to become malicious, for example, "trojan horses” or similar supply chain compromises."
