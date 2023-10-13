@@ -64,3 +64,31 @@ Made "Supplier" the term for referring to any software or hardware creator, prod
 
 Formerly Section 2, "Sub-CNAs" is no longer in use as a term. Under the new rules, all CVE Program participants who can assign CVE IDs are CNAs or CNAs of Last Resort (CNA-LR). 
 
+### 11 Moved Definitions
+
+Definitions are now in the [CVE Program Glossary](https://docs.google.com/document/d/1PV7DdToG8dWAubCR5sI73Cfdzkv_gk79oEvu-HJRqRQ/edit?usp=sharing). Formerly Appendix A.
+
+| Old | New |
+| :--- | :--- |
+| Appendix A Definitions| [CVE Program Glossary](https://docs.google.com/document/d/1PV7DdToG8dWAubCR5sI73Cfdzkv_gk79oEvu-HJRqRQ/edit?usp=sharing), link in Section 1.4 |
+
+### 12 Moved/Expanded Scope Definition
+
+Moved and expanded guidance on defining CNA scope. Added guidance for EOL products, researchers & third-party coordinators, and for organizations performing multiple roles within the CVE Program.
+
+| Old | New |
+| :--- | :--- |
+| 10 Defining a CNA’s Scope | 3.1 CNA Scope Definition |
+
+### 13 Moved/Expanded CNA Administration
+
+Further detailed rules and guidance for CNA Administration procedure, including Administration Interfaces, Points of Contact, and Coordinated Vulnerability Disclosure.
+
+| Old | New |
+| :--- | :--- |
+| 2.4 Administration Rules | 3.2 CNA Administration |
+
+### 14 "Root CNAs" Removed
+
+Formerly Section 3 "Root CNAs" has been removed. The terms "Root CNAs" and "Program Root CNA" are no longer in use. New terms are "Root" and "Top-Level Root" or "TL-Root."
+
