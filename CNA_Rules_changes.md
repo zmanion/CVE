@@ -11,7 +11,7 @@ In roughly the second half of 2023, the CNA Operational Rules were revised. This
 ## Highlights
 
 ### 1 "Governance" content moved to a separate document
-The revised CNA Operational Rules are focused on administering and managing CNAs and assigning CVE IDs and publishing and maintaining CVE Records. The governance rules have been moved to (where?).
+The revised CNA Operational Rules are focused on administering and managing CNAs and assigning CVE IDs and publishing and maintaining CVE Records. The governance rules have been moved to (where?). Formerly Sections 3, 5, and 6 ("Root CNAs," "Secretariat," and "Program Root CNA") have been removed from this document.
 
 | Old | New |
 | :--- | :--- |
@@ -24,12 +24,17 @@ Program-wide content has been removed from the document but remains on cve.org, 
 
 ### 3 Reorganized sections
 
-asdf
+Many sections have been moved, reordered, moved to separate documents, or had their organizational hierarchies changed. This list is subject to change and will probably not reflect every alteration to the document. 
 
 | Old | New |
 | :--- | :--- |
-| 8 CVE Record Requirements | 5 CVE Record Requirements |
-| more | |
+| 8 CVE Entry Requirements | 5 CVE Record Requirements |
+| 7 Assignment Rules | 4.2 CVE ID Assignment |
+| 10 Defining a CNA's Scope | 3.1 Scope Definition |
+| Appendix B Terms of Use | Separate [Terms of Use Page](https://www.cve.org/Legal/TermsOfUse) |
+| 2 Sub-CNAs | 4 CNA Operational Rules |
+| 11 CNA Rules Updates | 2 Changes to the CNA Operational Rules |
+
 
 ### 4 Introduction changed
 
@@ -62,11 +67,11 @@ Made "Supplier" the term for referring to any software or hardware creator, prod
 
 ### 10 "Sub-CNAs" Removed
 
-Formerly Section 2, "Sub-CNAs" is no longer in use as a term. Under the new rules, all CVE Program participants who can assign CVE IDs are CNAs or CNAs of Last Resort (CNA-LR). 
+Formerly Section 2, "Sub-CNAs" is no longer in use as a term. Under the new rules, all CVE Program participants who can assign CVE IDs are CNAs or CNAs of Last Resort (CNA-LR). The rules formerly described under "Sub-CNAs" are now under Section 4 CNA Operational Rules
 
 ### 11 Moved Definitions
 
-Definitions are now in the [CVE Program Glossary](https://docs.google.com/document/d/1PV7DdToG8dWAubCR5sI73Cfdzkv_gk79oEvu-HJRqRQ/edit?usp=sharing). Formerly Appendix A.
+Definitions are now in the [CVE Program Glossary](https://docs.google.com/document/d/1PV7DdToG8dWAubCR5sI73Cfdzkv_gk79oEvu-HJRqRQ/edit?usp=sharing). Formerly Appendix A. Note: CVE Record States are still under Appendix A.
 
 | Old | New |
 | :--- | :--- |
@@ -91,4 +96,5 @@ Further detailed rules and guidance for CNA Administration procedure, including 
 ### 14 "Root CNAs" Removed
 
 Formerly Section 3 "Root CNAs" has been removed. The terms "Root CNAs" and "Program Root CNA" are no longer in use. New terms are "Root" and "Top-Level Root" or "TL-Root."
+
 
