@@ -97,4 +97,7 @@ Further detailed rules and guidance for CNA Administration procedure, including 
 
 Formerly Section 3 "Root CNAs" has been removed. The terms "Root CNAs" and "Program Root CNA" are no longer in use. New terms are "Root" and "Top-Level Root" or "TL-Root."
 
+### 15 Vulnerability determination and assignment rules
+
+Significant changes here, removed cloud assignment restrictions 4.1 4.2
 
