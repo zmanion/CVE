@@ -101,3 +101,8 @@ Formerly Section 3 "Root CNAs" has been removed. The terms "Root CNAs" and "Prog
 
 Significant changes here, removed cloud assignment restrictions 4.1 4.2
 
+### 16 EOL Rules Updated
+
+Updated the end-of-life CVE Assignment/scope rules to be consistent with Section 3 of [End of Life Vulnerability Assignment Process](https://www.cve.org/Resources/General/End-of-Life-EOL-Assignment-Process.pdf). Section 3.1.11 in the CNA Operational Rules now provides appropriate guidance for defining CNA Scope with regard to EOL products. 
+
+Also updated Section 4.2.2.12 in CNA Operational Rules to include reference to Section 5 of [End of Life Vulnerability Assignment Process](https://www.cve.org/Resources/General/End-of-Life-EOL-Assignment-Process.pdf), providing guidance on reporting vulnerabilities discovered in EOL products.
