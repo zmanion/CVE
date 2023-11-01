@@ -97,17 +97,21 @@ Further detailed rules and guidance for CNA Administration procedure, including 
 
 Formerly Section 3 "Root CNAs" has been removed. The terms "Root CNAs," sband "Program Root CNA" are no longer in use. New terms are "Root" and "Top-Level Root" or "TL-Root."
 
-### 15 Revised Vulnerability Determination and Assignment Rules
+### 15 Revised Vulnerability Determination and Assignment Rules, Including Cloud
 
-Significant changes here, removed cloud assignment restrictions from CNA Operational Rules Sections 4.1, 4.2. Formerly Section 7.4.4, 7.4.5, and 7.4.6 contained language that restricted some CVE IDs from being assigned to cloud services; these sub-sections have been removed. Section 4.2.2 now contains the updated rules for "Primary Assignment."
+Significant changes here, removed cloud assignment restrictions from CNA Operational Rules Sections 4.1, 4.2. Formerly Section 7.4.4, 7.4.5, and 7.4.6 contained language that restricted some CVE IDs from being assigned to cloud services; these sub-sections have been removed. Section 4.2.2 now contains the updated rules for "Primary Assignment." Added sub-section 4.2.2.4: "CNAs MUST NOT consider the type of technology (e.g., cloud, on-premises, hybrid, artificial intelligence, machine learning) as the sole basis for determining assignment."
 
-Added sub-section 4.2.2.4: "CNAs MUST NOT consider the type of technology (e.g., cloud, on-premises, hybrid, artificial intelligence, machine learning) as the sole basis for determining assignment."
+New organization:
+4.1 Vulnerability Determination (is it a vulnerability, or not, how many)
+4.2 CVE ID Assignment (
 
 | Old | New |
 | :--- | :--- |
-| 7.4.4 | 4.2.2 Primary Assignment |
-| 7.4.5 | 4.2.2 Primary Assignment |
-| 7.4.6 | 4.2.2 Primary Assignment |
+| 7.1 | 4.1 Vulnerability Determination |
+| 7.2 | 4.1 Vulnerability Determination |
+| 7.3 | 4.2 CVE ID Assignment |
+| 7.4 | 4.2 CVE ID Assignment |
+| 7.4.4,5,6 | 4.2.2 Primary Assignment |
 
 ### 16 EOL Rules Updated
 
