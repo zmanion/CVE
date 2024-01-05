@@ -1,5 +1,6 @@
 # Changes to the CNA Operational Rules
 
+### *Notice: This list is now being maintained in a [Google Doc](https://docs.google.com/document/d/1UURY4z3YhSUTehDCidLKxGT7FRtq7IiadMAsfgbARf0/edit?usp=sharing). Check there for the most recent updates.*
 ##  Summary
 
 In roughly the second half of 2023, the CNA Operational Rules were revised. This document highlights some of the (proposed) changes.
