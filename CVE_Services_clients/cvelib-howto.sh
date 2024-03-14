@@ -107,14 +107,21 @@ case $OSTYPE in
 		statUser='stat -f %u'
 		statPerms='stat -f %OLp'
 	;;
+	# not confirmed, assume like linux
 	cygwin* )
-		statCmd='stat -c'
+		statUser='stat -c %u'
+		statPerms='stat -c %a'
 	;;
+	# not confirmed, assume like darwin
 	FreeBSD )
-		statCmd='stat -f'
+		statUser='stat -f %u'
+		statPerms='stat -f %OLp'
 	;;
+	# assume linux
 	* )
-		statCmd='stat -c'
+		statUser='stat -c %u'
+		statPerms='stat -c %a'
+	;;
 esac
 
 #
@@ -364,6 +371,11 @@ cat <<-EOM > $publishTemp
         {
             "name": "Example Security Advisory EA-1234",
             "url": "https://www.example.com/security/EA-1234.html"
+        }
+    ],
+    "datePublic": [
+        {
+            "2022-22-22T16:22:00000Z"
         }
     ]
 }
