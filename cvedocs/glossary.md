@@ -4,6 +4,7 @@
 | ---: | --- |
 | Version | 1.0.0 |
 | Approved | 2024-01-29 |
+| Effective | 2024-01-29 |
 
 Council of Roots (CoR): The group of TL-Roots responsible for governance and administration of their respective hierarchies.
 
