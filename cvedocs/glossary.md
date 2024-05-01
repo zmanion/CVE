@@ -3,8 +3,7 @@
 | Status | |
 | ---: | --- |
 | Version | 1.0.0 |
-| Last approval | 2024-mm-dd |
-| Last udpdated | 2024-03-14 |
+| Approved | 2024-01-29 |
 
 Council of Roots (CoR): The group of TL-Roots responsible for governance and administration of their respective hierarchies.
 
@@ -58,7 +57,7 @@ unsupported-when-assigned: At the time of CVE ID assignment, all known Products 
 
 disputed: A CVE ID assignment or CVE Record content have been disputed.
 
-Supplier: The entity that develops, maintains, or provides a product. A supplier is typically responsible for and capable of investigating vulnerability reports and developing fixes or mitigations for vulnerabilities. “Supplier” is used broadly and includes common terms such as vendor, producer, developer, maintainer, author, owner, manufacturer, and provider.
+[Supplier](https://www.cve.org/ResourcesSupport/Glossary?activeTerm=glossarySupplier): The entity that develops, maintains, or provides a product. A supplier is typically responsible for and capable of investigating vulnerability reports and developing fixes or mitigations for vulnerabilities. “Supplier” is used broadly and includes common terms such as vendor, producer, developer, maintainer, author, owner, manufacturer, and provider.
 
 Top-Level Root: A Root who is responsible for the governance and administration of its hierarchy, including Roots and CNAs within that hierarchy.
 
