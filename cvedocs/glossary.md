@@ -1,7 +1,7 @@
 # Glossary
 
 | Status | |
-| ---: | --- |
+| ---: | :--- |
 | Version | 1.0.0 |
 | Approved | 2024-01-29 |
 | Effective | 2024-01-29 |
