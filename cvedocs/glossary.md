@@ -3,7 +3,7 @@
 | Status | Draft |
 | ---: | :--- |
 | Version | 1.0.1 |
-| Approved | 2024-mm-2dd |
+| Approved | 2024-mm-dd |
 | Effective | 2024-mm-dd |
 
 Authorized Data Publisher (ADP): An organization approved to provide additional specific and scoped information in existing CVE Records using an ADP container.
