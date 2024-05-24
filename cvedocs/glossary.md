@@ -1,7 +1,7 @@
 # Glossary
 
 | Status | |
-| ---: | --- |
+| ---: | :--- |
 | Version | 1.0.1 |
 | Approved | 2024-mm-2dd |
 | Effective | 2024-mm-dd |
