@@ -1,6 +1,6 @@
 # Glossary
 
-| Status | |
+| Status | Draft |
 | ---: | :--- |
 | Version | 1.0.1 |
 | Approved | 2024-mm-2dd |
