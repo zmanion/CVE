@@ -1,10 +1,12 @@
 # Glossary
 
-| Status | |
+| Status | Draft |
 | ---: | :--- |
-| Version | 1.0.0 |
-| Approved | 2024-01-29 |
-| Effective | 2024-01-29 |
+| Version | 1.0.1 |
+| Approved | 2024-mm-dd |
+| Effective | 2024-mm-dd |
+
+Authorized Data Publisher (ADP): An authorized entity with specific scope and responsibility to enrich the content of CVE Records published by CVE Numbering Authorities (CNAs) with additional, pertinent information (e.g., risk scores, references, vulnerability characteristics, translations).
 
 Council of Roots (CoR): The group of TL-Roots responsible for governance and administration of their respective hierarchies.
 
@@ -30,9 +32,11 @@ Published: A CNA has populated the data associated with the CVE ID and published
 
 Rejected: The CVE ID and the associated CVE Record should no longer be used. A Rejected CVE Record remains on the CVE List so that users know that the CVE ID and CVE Record are invalid.
 
+CVE Program Participants: Anyone who is an active participant in the CVE Program, including CVE Board members, CNAs, Authorized Data Publishers (ADPs), and the CVE Program Secretariat.
+
 CVE Working Group: An organization created and administered by the CVE Board to accomplish specific objectives through collaboration with CVE stakeholders and the general public where appropriate.
 
-End of Life (EOL): A Product that no longer receives security Fixes. EOL typically indicates that a Product no longer receives any support, maintenance, or new features.
+End of Life (EOL): The CVE Program treats End of Life (EOL) and End of Support (EOS) as the same, even though various Suppliers may not. EOL essentially means the Supplier has decided the product in question has reached the end of its “useful lifespan.” After this date, the manufacturer no longer markets, sells, provides security fixes, technical support, sustains, enhances, or fixes bugs in the product.
 
 Fix: A change to software to remediate, mitigate, or otherwise address a vulnerability. “Fix” is used broadly and includes terms such as patch, fix, hotfix, update, and upgrade.
 
@@ -41,6 +45,8 @@ Independently Fixable: A vulnerability is independently fixable when it can be f
 Product: A unit of software or hardware or both. “Product” is used broadly and includes services, open source projects, specifications, and other common terms such as: system, appliance, device, component, library, package, archive, and collection.
 
 Publicly Disclosed: The state in which non-trivial information about a vulnerability is publicly available. The publication of most vulnerability advisories, software updates, proof-of-concept exploit code, or other detailed information makes the vulnerability “Publicly Disclosed.”
+
+Reporter: The entity that reports a vulnerability to a CNA. It could be a security researcher, a corporate partner, an end-user, etc.
 
 Reserved but Public (RBP): A CVE ID in the “Reserved” state that is referenced in one or more public sources but for which a CVE Record has not been published.
 
@@ -58,8 +64,8 @@ unsupported-when-assigned: At the time of CVE ID assignment, all known Products 
 
 disputed: A CVE ID assignment or CVE Record content have been disputed.
 
-[Supplier](https://www.cve.org/ResourcesSupport/Glossary?activeTerm=glossarySupplier): The entity that develops, maintains, or provides a product. A supplier is typically responsible for and capable of investigating vulnerability reports and developing fixes or mitigations for vulnerabilities. “Supplier” is used broadly and includes common terms such as vendor, producer, developer, maintainer, author, owner, manufacturer, and provider.
+[Supplier](https://www.cve.org/ResourcesSupport/Glossary?activeTerm=glossarySupplier): The entity that develops, maintains, or provides a product regardless of whether the product is an open-source project or a proprietary product. A supplier is typically responsible for and capable of investigating vulnerability reports and developing fixes or mitigations for vulnerabilities. “Supplier” is used broadly and includes common terms such as vendor, producer, developer, maintainer, author, owner, manufacturer, and provider.
 
-Top-Level Root: A Root who is responsible for the governance and administration of its hierarchy, including Roots and CNAs within that hierarchy.
+Top-Level Root (TL-Root): The highest-level Root responsible for the governance and administration of a specified hierarchy, including Roots and CNAs within that hierarchy.
 
 Vulnerability: an instance of one or more weaknesses in a Product that can be exploited, causing a negative impact to confidentiality, integrity, or availability; a set of conditions or behaviors that allows the violation of an explicit or implicit security policy.
